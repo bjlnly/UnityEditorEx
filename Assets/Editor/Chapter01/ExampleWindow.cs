@@ -12,6 +12,7 @@ public class ExampleWindow : EditorWindow
     static void Initialize()
     {
         ExampleWindow window = (ExampleWindow)EditorWindow.GetWindow(typeof(ExampleWindow), true, "ExampleWindow");
+        Debug.Log(window);
     }
     [InitializeOnLoadMethod]
     static void GetBultinAssetNames()
