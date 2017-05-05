@@ -19,7 +19,7 @@ public class ExampleWindow : EditorWindow
     {
         // 读取default中的文件
         var tex = EditorGUIUtility.Load("logo.jpg") as Texture;
-        Debug.Log(tex);
+        //Debug.Log(tex);
         // 加载内置资源
         //var flags = BindingFlags.Static | BindingFlags.NonPublic;
         //var info = typeof(EditorGUIUtility).GetMethod("GetEditorAssetBundle", flags);
