@@ -2,9 +2,9 @@
 using System.Collections;
 using UnityEditor;
 
-#region  CreateAssetMenu
-[CreateAssetMenu(menuName = "Example/Create ExampleAsset Instance")]
-#endregion
+//#region  CreateAssetMenu
+//[CreateAssetMenu(menuName = "Example/Create ExampleAsset Instance")]
+//#endregion
 public class ExampleAsset : ScriptableObject {
     #region 实例化
     //ScriptableObject.CreateInstance
