@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Text;
 using UnityEditor;
+using UnityEditorInternal;
 
 public class SerializedObjectUse : MonoBehaviour {
 
@@ -21,5 +22,22 @@ public class SerializedObjectUse : MonoBehaviour {
         tempBuilder = new StringBuilder();
         var serializedName = serializedObject.FindProperty("names").GetArrayElementAtIndex(1).stringValue;
         Debug.Log(tempBuilder.Append("serializedName：").Append(serializedName));
+
+        #region 处理多个UnityEngine.Object
+        Rigidbody[] rigidbodies = GameObject.FindObjectsOfType<Rigidbody>();
+        serializedObject = new SerializedObject(rigidbodies);
+        serializedObject.FindProperty("m_UseGravity").boolValue = true;
+        serializedObject.ApplyModifiedProperties();
+        #endregion
+
+        #region 获取属性名
+	    serializedObject.GetIterator();
+	    #endregion
+	}
+
+    void Start()
+    {
+        var rigidbody = GetComponent<Rigidbody>();
+        InternalEditorUtility.SaveToSerializedFileAndForget(new Object[]{rigidbody}, "Rigidbody.yml", true);
     }
 }

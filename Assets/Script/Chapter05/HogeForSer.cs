@@ -15,5 +15,5 @@ public class HogeForSer : MonoBehaviour
     [SerializeField] Fuga fuga;
 
     [SerializeField] string[] names;
-
+ 
 }
