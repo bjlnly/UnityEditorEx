@@ -25,6 +25,38 @@ public class BaseEditorGUI : EditorWindow
     AnimFloat animFloat = new AnimFloat(0.0001f);
     Texture tex;
     #endregion
+
+    #region EditorGUI.MultiFloatField
+
+    private float[] numbers = new float[]
+    {
+        0,
+        1,
+        2
+    };
+
+    GUIContent[] contents = new GUIContent[] {
+        new GUIContent ("X"),
+        new GUIContent ("Y"),
+        new GUIContent ("Z")
+    };
+    #endregion
+
+    #region EditorGUILayout.Knob
+    private float angle = 0;
+    #endregion
+
+    #region 按钮风格切换
+    private bool on;
+    #endregion
+
+    #region 多个按钮切换
+    private bool one, two, three;
+    #endregion
+
+    #region GUILayout.Toolbar
+    private int selected;
+    #endregion
     void OnGUI()
     {
         #region Label
@@ -115,6 +147,68 @@ public class BaseEditorGUI : EditorWindow
         //EditorGUILayout.ObjectField(null, typeof(Sprite), false, options);
 
         #endregion
+
+        #region EditorGUI.MultiFloatField  一行显示多个float
+        //EditorGUI.MultiFloatField(new Rect(30,30,200,EditorGUIUtility.singleLineHeight), 
+        //                          new GUIContent("Label"), 
+        //                          contents,
+        //                          numbers);
+        #endregion
+
+        #region EditorGUI.IndentLevel 缩进
+        //EditorGUILayout.LabelField("Parent");
+
+        //EditorGUI.indentLevel++;
+        //EditorGUILayout.LabelField("Child");
+        //EditorGUILayout.LabelField("Child");
+
+        //EditorGUI.indentLevel--;
+        //EditorGUILayout.LabelField("Parent");
+
+        //EditorGUI.indentLevel++;
+        //EditorGUILayout.LabelField("Child");
+        #endregion
+
+        #region EditorGUILayout.Knob 旋转
+        //angle = EditorGUILayout.Knob(Vector2.one * 64, angle, 0, 360, "度~", Color.gray, Color.red, true);
+        #endregion
+
+        #region Scope排列
+        //HorizontalScope，VerticalScope，ScrollViewScope
+        /*using (new BackgroundColorScope(Color.green))
+        {
+            GUILayout.Button("Button1");
+            using (new BackgroundColorScope(Color.yellow))
+            {
+                GUILayout.Button("Button2");
+            }
+        }*/
+        #endregion
+
+        #region 按钮风格切换
+        //on = GUILayout.Toggle(on, @on ? "on" : "off", "button");
+        #endregion
+
+        #region 多个按钮切换
+        //using (new EditorGUILayout.HorizontalScope())
+        //{
+        //    one = GUILayout.Toggle(one, "1", EditorStyles.miniButtonLeft);
+        //    two = GUILayout.Toggle(two, "2", EditorStyles.miniButtonMid);
+        //    three = GUILayout.Toggle(three, "3", EditorStyles.miniButtonRight);
+        //}
+        #endregion
+
+        #region GUILayout.Toolbar
+        selected = GUILayout.Toolbar(selected, new string[] {"1", "2", "3"});
+        #endregion
+
+        #region EditorStyles.toolbarButton
+        selected = GUILayout.Toolbar(selected, new string[] {"1", "2", "3"}, EditorStyles.toolbarButton);
+        #endregion
+
+        #region GUILayout.SelectionGrid
+        selected = GUILayout.SelectionGrid(selected, new string[] {"1", "2", "3"}, 1, "PreferencesKeysElement");
+        #endregion
     }
 
     void Display()
@@ -137,3 +231,33 @@ public class BaseEditorGUI : EditorWindow
         #endregion
     }
 }
+#region BackgroundColorScope 自制范围
+
+public class HorizontalScope : GUI.Scope
+{
+    public HorizontalScope()
+    {
+        EditorGUILayout.BeginHorizontal();
+    }
+
+    protected override void CloseScope()
+    {
+        EditorGUILayout.EndHorizontal();
+    }
+}
+
+public class BackgroundColorScope : GUI.Scope
+{
+    private readonly Color color;
+
+    public BackgroundColorScope(Color color)
+    {
+        this.color = GUI.backgroundColor;
+        GUI.backgroundColor = color;
+    }
+    protected override void CloseScope()
+    {
+        GUI.backgroundColor = color;
+    }
+}
+#endregion
