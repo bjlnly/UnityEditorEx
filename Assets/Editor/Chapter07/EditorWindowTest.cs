@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Text;
 using UnityEditor;
 
 public class EditorWindowTest : EditorWindow
@@ -58,7 +59,8 @@ public class EditorWindowTest : EditorWindow
         exampleWindow.ShowAsDropDown(buttonRect, windowSize);
         #endregion
 
-
+        StringBuilder sb = new StringBuilder();
+        sb.Append("123213").Append("12313");
     }
 
     void OnGUI()
