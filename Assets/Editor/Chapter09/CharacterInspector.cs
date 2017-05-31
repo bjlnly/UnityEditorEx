@@ -12,12 +12,14 @@ public class CharacterInspector : Editor
 {
     //private Character character = null;
     //private SerializedProperty hpProperty;
-    Character[] characters;
+    //Character[] characters;
+    SerializedProperty exampleProperty;
     void OnEnable()
     {
         //character = (Character) target;
         //hpProperty = serializedObject.FindProperty("hp");
-        characters = targets.Cast<Character>().ToArray();
+        //characters = targets.Cast<Character>().ToArray();
+        exampleProperty = serializedObject.FindProperty("PdExample");
     }
 
     public override void OnInspectorGUI()
@@ -39,11 +41,33 @@ public class CharacterInspector : Editor
         //if (EditorGUI.EndChangeCheck())
         //{
         //    Undo.RecordObject(character, "Change hp");
-        //    character.hp = hp;
+        //    characters[0].hp = hp;
         //    EditorUtility.SetDirty(character);
         //}
         #endregion
 
+        #region EditorGUI.showMixedValue 多个同时编辑
+        //EditorGUI.BeginChangeCheck();
+        //EditorGUI.showMixedValue = characters.Select(x => x.hp).Distinct().Count() > 1;
+        //var hp = EditorGUILayout.IntSlider("Hp", characters[0].hp, 0, 100);
+        //EditorGUI.showMixedValue = false;
+        //if (EditorGUI.EndChangeCheck())
+        //{
+        //    Undo.RecordObjects(characters, "Change hp");
 
+        //    foreach (var character in characters)
+        //    {
+        //        character.hp = hp;
+        //    }
+        //}
+        #endregion
+
+        #region PropertyDrawer
+        serializedObject.Update();
+
+        EditorGUILayout.PropertyField(exampleProperty);
+
+        serializedObject.ApplyModifiedProperties();
+        #endregion
     }
 }
