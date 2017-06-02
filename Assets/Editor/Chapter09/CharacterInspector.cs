@@ -70,4 +70,10 @@ public class CharacterInspector : Editor
         serializedObject.ApplyModifiedProperties();
         #endregion
     }
+
+
+    public override bool HasPreviewGUI()
+    {
+        return true;
+    }
 }
