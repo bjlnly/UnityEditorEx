@@ -6,7 +6,12 @@ using UnityEngine.Serialization;
 /// inspector整理
 /// </summary>
 /// 
-
+#region ExecuteInEditMode
+[ExecuteInEditMode]
+#endregion
+#region SelectionBase
+[SelectionBase]
+#endregion
 #region RequireComponent
 [RequireComponent(typeof(Animator))]
 #endregion
@@ -16,12 +21,7 @@ using UnityEngine.Serialization;
 #region AddComponentMenu
 [AddComponentMenu("Myui/InspectorManage")]
 #endregion
-#region ExecuteInEditMode
-[ExecuteInEditMode]
-#endregion
-#region SelectionBase
-[SelectionBase]
-#endregion
+
 public class InspectorManage : MonoBehaviour {
     #region Header
     [Header("Player Settings")]
@@ -58,8 +58,8 @@ public class InspectorManage : MonoBehaviour {
     #endregion
 
     #region FormerlySerializedAs
-    //[FormerlySerializedAs("hoga")]
-    public string foga;
+    [FormerlySerializedAs("TempBefore")]
+    public string TempAfter;
     #endregion
 
     #region ExecuteInEditMode
