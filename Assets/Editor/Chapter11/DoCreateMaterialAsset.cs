@@ -28,4 +28,5 @@ public class DoCreateMaterialAsset : EndNameEditAction
 
         ProjectWindowUtil.StartNameEditingIfProjectWindowExists(instanceID, endNameEditAction, "New Material.mat",icon, "");
     }
+
 }
