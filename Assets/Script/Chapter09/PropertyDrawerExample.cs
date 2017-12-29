@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using JetBrains.Annotations;
+#if UNITY_EDITOR
 using UnityEditor;
 
 [System.Serializable]
@@ -50,3 +51,4 @@ public class ExampleDrawer : PropertyDrawer
         return base.GetPropertyHeight(property, label) * 2;
     }
 }
+#endif

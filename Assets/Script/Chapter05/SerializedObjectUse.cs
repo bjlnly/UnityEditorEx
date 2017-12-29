@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Text;
+#if UNITY_EDITOR
 using UnityEditor;
+
 using UnityEditorInternal;
 
 public class SerializedObjectUse : MonoBehaviour {
@@ -41,3 +43,4 @@ public class SerializedObjectUse : MonoBehaviour {
         InternalEditorUtility.SaveToSerializedFileAndForget(new Object[]{rigidbody}, "Rigidbody.yml", true);
     }
 }
+#endif
